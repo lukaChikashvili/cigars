@@ -1,5 +1,6 @@
 varying vec2 vUv;
-
+uniform float uTime;
+uniform sampler2D uPerlin;
 
 vec2 rotate2D(vec2 value, float angle)
 {
@@ -13,7 +14,10 @@ void main() {
     vec3 newPosition = position;
 
     // twisting plane
-    float angle = newPosition.y * 6.0;
+    float twistPerlin = texture(uPerlin, vec2(0.5, uv.y * 0.2 - uTime * 0.005)).r;
+
+
+    float angle = twistPerlin * 10.0;
     newPosition.xz  = rotate2D(newPosition.xz, angle);
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
