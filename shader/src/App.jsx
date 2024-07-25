@@ -60,7 +60,7 @@ function App() {
            vertexShader={vertex}
            fragmentShader={fragment}
            side={THREE.DoubleSide}
-           wireframe = {false}
+           wireframe = {true}
            transparent = {true}
            uniforms={uniforms.current}
          />
