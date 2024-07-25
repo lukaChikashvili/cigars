@@ -90,7 +90,7 @@ const Scene = () => {
          />
        </mesh>
 
-       <Stars radius={50} depth={30} count={3000} factor={4} saturation={2} fade speed={1} />
+       <Stars radius={50} depth={100} count={2000} factor={4} saturation={2} fade speed={1} />
      
  </>
   )

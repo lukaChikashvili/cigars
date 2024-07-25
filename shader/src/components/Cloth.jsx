@@ -11,9 +11,10 @@ const mapToRange = (value, minRange, maxRange) => minRange + (maxRange - minRang
 
 
 const colors = [
-  '#55AD9B',
-  '#7776B3',
-  '#EE4E4E'
+  '#7AA2E3',
+  '#028391',
+  '#D2649A',
+
 
 ];
 
@@ -22,7 +23,7 @@ const Cloth = () => {
   const clothTexture = useTexture('./cloth.avif');
 
   // Retrieve vars from context
-  const {setShowHistory,  setShowText } = useContext(MeshContext);
+  const {setShowHistory,  setShowText, setManu } = useContext(MeshContext);
 
   // Uniforms
   const uniforms = useRef({
@@ -41,7 +42,7 @@ const Cloth = () => {
 
   
     let scrollOffset = scroll.offset;
-    let mappedScrollOffset = mapToRange(scrollOffset, 0, 4);
+    let mappedScrollOffset = mapToRange(scrollOffset, 0, 5);
 
 
     const colorIndex = Math.floor(mappedScrollOffset % colors.length);
@@ -57,16 +58,19 @@ const Cloth = () => {
     if (mappedScrollOffset >= 0.5 && mappedScrollOffset < 2.0) {
         setShowText(true);
         setShowHistory(false);
-      } else if (mappedScrollOffset >= 1.5 && mappedScrollOffset < 3.0) {
+      } else if (mappedScrollOffset >= 2.0 && mappedScrollOffset < 3.5) {
         setShowText(false);
         setShowHistory(true);
-      } else if (mappedScrollOffset >= 3.0 && mappedScrollOffset < 4.0) {
+        setManu(false);
+      } else if (mappedScrollOffset >= 3.5 && mappedScrollOffset < 4.0) {
         setShowText(false);
         setShowHistory(false);
-      } else {
+        setManu(true);
+      }  else {
         setShowText(false);
-        setShowHistory(false);
       }
+
+      console.log(mappedScrollOffset)
    
   });
 
