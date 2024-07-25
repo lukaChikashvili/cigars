@@ -52,15 +52,15 @@ function App() {
          />
 
        <mesh scale={[ 1, 6, 1.5 ]} 
-             rotation={[0,  Math.PI / 2, 0]}
-             position={[0.6, 1.6, 0]}
+             rotation={[0,  0, 0]}
+             position={[0.5, 4.5, 0]}
              ref={plane}> 
-        <planeGeometry args={[1, 1, 64, 64]}/>
+        <planeGeometry args={[0.8, 2, 64, 64]}/>
          <shaderMaterial  
            vertexShader={vertex}
            fragmentShader={fragment}
            side={THREE.DoubleSide}
-           wireframe = {true}
+           wireframe = {false}
            transparent = {true}
            uniforms={uniforms.current}
          />
