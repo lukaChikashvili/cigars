@@ -1,5 +1,5 @@
-import React from 'react'
-import { OrbitControls, useGLTF, useTexture } from '@react-three/drei';
+import React, { useEffect, useState } from 'react'
+import { CameraControls, OrbitControls, useGLTF, useScroll, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import vertex from '../shaders/coffeeSmoke/vertex.glsl';
 import fragment from '../shaders/coffeeSmoke/fragment.glsl';
@@ -14,11 +14,13 @@ const Scene = () => {
    // Load table model
    const table = useGLTF('./table.glb');
 
+ 
    // Load perline texture
    const texture = useTexture('./perlin.png');
    texture.wrapS = THREE.RepeatWrapping;
    texture.wrapT = THREE.RepeatWrapping;
 
+   
 
    // uniforms
    const uniforms = useRef({
@@ -32,9 +34,17 @@ const Scene = () => {
      plane.current.material.uniforms.uTime.value += 0.025;
    })
 
+   const scroll = useScroll();
+  
+
+   useFrame((camera) => {
+    camera.camera.position.z = scroll.scroll.current * 10;
+    
+  });
+
   return (
  <>
-   <OrbitControls makeDefault />
+   
       <ambientLight intensity={1} />
       <directionalLight
         position={[5, 8, 5]}
@@ -49,19 +59,24 @@ const Scene = () => {
         object={model.scene}
         scale = {20} 
         rotation = {[ 0, -0.5, 0 ]}
-        position-y = {1.8}
+        position-y = {0}
         position-x = {-2} 
+        
          />
 
          <primitive 
         object={table.scene}
         scale = {4} 
-        position = {[ 0, -3,  0 ]}
+        position={[0, -5, 0]}
          />
+
+  
+
+      
 
        <mesh scale={[ 1, 6, 1.5 ]} 
              rotation={[0,  0, 0]}
-             position={[-0.5, 4.5, 1]}
+             position={[-0.5, 3.5, 1]}
              ref={plane}> 
         <planeGeometry args={[0.3, 1, 64, 64]}/>
          <shaderMaterial  

@@ -1,5 +1,5 @@
 import './app.css';
-import { OrbitControls, useGLTF, useTexture } from '@react-three/drei';
+import { OrbitControls, ScrollControls, useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import vertex from './shaders/coffeeSmoke/vertex.glsl';
 import fragment from './shaders/coffeeSmoke/fragment.glsl';
@@ -16,8 +16,12 @@ function App() {
   return (
     <>
     <Canvas shadows
-        camera={{ fov: 75, near: 0.1, far: 1000, position: [-1, 5, 7] }}>
+        camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 3, 4] }}>
+          <ScrollControls damping={0.5} pages={3}>
+       
        <Scene />
+   
+       </ScrollControls>
         </Canvas>
 
         <div className='container'>
