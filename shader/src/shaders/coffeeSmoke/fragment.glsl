@@ -1,10 +1,17 @@
 uniform sampler2D uPerlin;
 varying vec2 vUv;
+uniform float uTime;
 
 void main() {
 
+      // scale
+      vec2 smokeUv = vUv;
+      smokeUv.x *= 0.5;
+      smokeUv.y *= 0.3;
+      smokeUv.y -= uTime * 0.03;
+
       // add perling texture
-      float smoke = texture(uPerlin, vUv).r;
+      float smoke = texture(uPerlin, smokeUv).r;
       
 
 

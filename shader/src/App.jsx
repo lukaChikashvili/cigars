@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import vertex from './shaders/coffeeSmoke/vertex.glsl';
 import fragment from './shaders/coffeeSmoke/fragment.glsl';
 import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 
 
 function App() {
@@ -13,13 +14,21 @@ function App() {
 
    // Load perline texture
    const texture = useTexture('./perlin.png');
-
+   texture.wrapS = THREE.RepeatWrapping;
+   texture.wrapT = THREE.RepeatWrapping;
 
 
    // uniforms
    const uniforms = useRef({
-      uPerlin: { value: texture}
+      uPerlin: { value: texture},
+      uTime: { value: 0}
    }) 
+
+   let plane = useRef();
+
+   useFrame(() => {
+     plane.current.material.uniforms.uTime.value += 0.025;
+   })
 
   
   return (
@@ -44,7 +53,8 @@ function App() {
 
        <mesh scale={[ 1, 6, 1.5 ]} 
              rotation={[0,  Math.PI / 2, 0]}
-             position={[0.6, 1.6, 0]}> 
+             position={[0.6, 1.6, 0]}
+             ref={plane}> 
         <planeGeometry args={[1, 1, 64, 64]}/>
          <shaderMaterial  
            vertexShader={vertex}
