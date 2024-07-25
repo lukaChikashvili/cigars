@@ -10,12 +10,13 @@
     font-family: 'Hello Bonia Serif', sans-serif;
 
 
-
 }
 
 body {
    
     background-color: '#7776B3 ';
+    background-image: url("https://www.transparenttextures.com/patterns/honey-im-subtle.png");
+
 
 margin: 0;
     padding: 0;
@@ -35,9 +36,29 @@ margin: 0;
 }
 
 .header {
+    
     width: 100%;
     padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 50rem;
+     
+
+
   
+}
+
+.menu {
+    color:#fff;
+    transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    pointer-events: all;
+    cursor: pointer;
+
+}
+
+.menu:hover {
+    color: #F4CE14;
 }
 
 .header h1 {
@@ -92,12 +113,38 @@ margin: 0;
     cursor: pointer;
     pointer-events: all;
     transition: all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
-
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 .btn:hover {
-    transform: translateY(-7px);
+    transform: translateY(-5px);
 }
+
+.btn::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #F4CE14;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.7s ease-in;
+  
+    
+
+}
+
+.btn:hover::after {
+    
+    width: 100%;
+    
+}
+
+
 
 .text-container span {
     font-weight: 500;
@@ -109,4 +156,19 @@ margin: 0;
     color: #F4CE14;
     font-weight: bold;
 
+}
+
+
+@media only screen and (max-width: 768px) {
+    .text {
+        font-size: 3rem;
+        text-shadow: -5px 5px rgba(0, 0, 0, 0.5);
+    }
+   
+
+    .definition-text {
+        width: 80%;
+        line-height: 2rem;
+        margin-top: -20px;
+    }
 }

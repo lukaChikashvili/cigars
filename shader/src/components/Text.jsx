@@ -16,11 +16,11 @@ const Text = () => {
 
   useEffect(() => {
     if (textRef.current) {
-      gsap.fromTo(textRef.current, { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 0.5 });
+      gsap.fromTo(textRef.current, { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 1 });
     }
 
     if (definitionRef.current) {
-      gsap.fromTo(definitionRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+      gsap.fromTo(definitionRef.current, { opacity: 0 }, { opacity: 1, duration: 1 });
     }
 
     if (btnRef.current) {
@@ -35,10 +35,10 @@ const Text = () => {
         ref={textRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5 }}
+        transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5}}
         className='text'
       >
-        {showHistory ? 'History' : showText ? 'Definition' : manu ? 'Manufacture' : 'The Timeless Journey of Cigars'}
+        {showHistory ? 'History' : showText ? 'Definition' : manu ? 'Our brand' : 'The Timeless Journey of Cigars'}
       </motion.h1>
       <p className='scroll'>{!showText && !showHistory && !manu && 'Scroll to discover'}</p>
       {showText && (

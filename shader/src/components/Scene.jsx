@@ -39,7 +39,7 @@ const Scene = () => {
 
    useFrame((camera) => {
     camera.camera.position.z = scroll.scroll.current * 10;
-
+    
     
   });
 

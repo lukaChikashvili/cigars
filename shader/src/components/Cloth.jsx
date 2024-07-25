@@ -26,6 +26,11 @@ const Cloth = () => {
   const clothRef = useRef();
   const scroll = useScroll();
 
+
+
+
+  
+
   useEffect(() => {
     setShowText(true); 
   }, [setShowText]);
@@ -44,11 +49,14 @@ const Cloth = () => {
     clothRef.current.rotation.x = scrollOffset * 3.0;
     clothRef.current.rotation.y = scrollOffset * 3.0;
 
+    
+
     if (mappedScrollOffset >= 0.5 && mappedScrollOffset < 2.0) {
       setShowText(true);
       setShowHistory(false);
       setManu(false);
     } else if (mappedScrollOffset >= 2.0 && mappedScrollOffset < 3.5) {
+      
       setShowText(false);
       setShowHistory(true);
       setManu(false);
@@ -61,6 +69,8 @@ const Cloth = () => {
       setShowHistory(false);
       setManu(false);
     }
+
+
   });
 
   return (
