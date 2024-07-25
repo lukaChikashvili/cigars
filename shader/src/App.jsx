@@ -4,68 +4,27 @@ import * as THREE from 'three';
 import vertex from './shaders/coffeeSmoke/vertex.glsl';
 import fragment from './shaders/coffeeSmoke/fragment.glsl';
 import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
+import Scene from './components/Scene';
+import Header from './components/Header';
 
 
 function App() {
 
-   // Load cigar model
-   const model = useGLTF('./Cigar.glb');
-
-   // Load perline texture
-   const texture = useTexture('./perlin.png');
-   texture.wrapS = THREE.RepeatWrapping;
-   texture.wrapT = THREE.RepeatWrapping;
-
-
-   // uniforms
-   const uniforms = useRef({
-      uPerlin: { value: texture},
-      uTime: { value: 0}
-   }) 
-
-   let plane = useRef();
-
-   useFrame(() => {
-     plane.current.material.uniforms.uTime.value += 0.025;
-   })
-
+   
   
   return (
     <>
-      <OrbitControls makeDefault />
-      <ambientLight intensity={0.3} />
-      <directionalLight
-        position={[5, 5, 5]}
-        intensity={1.5}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-      />
-      <pointLight position={[-5, 5, -5]} intensity={0.5} />
-       
-       <primitive 
-        object={model.scene}
-        scale = {40} 
-        position-y = {-1}
-        position-x = {-3} 
-         />
+    <Canvas shadows
+        camera={{ fov: 75, near: 0.1, far: 1000, position: [-1, 5, 7] }}>
+       <Scene />
+        </Canvas>
 
-       <mesh scale={[ 1, 6, 1.5 ]} 
-             rotation={[0,  0, 0]}
-             position={[0.5, 4.5, 0]}
-             ref={plane}> 
-        <planeGeometry args={[0.8, 2, 64, 64]}/>
-         <shaderMaterial  
-           vertexShader={vertex}
-           fragmentShader={fragment}
-           side={THREE.DoubleSide}
-           wireframe = {false}
-           transparent = {true}
-           uniforms={uniforms.current}
-         />
-       </mesh>
+        <div className='container'>
+     <Header />
+        </div>
     </>
+   
   );
 }
 
