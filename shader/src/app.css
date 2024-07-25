@@ -14,12 +14,13 @@
 }
 
 body {
-    background-color: #454545;
-    background-color: #2e1923;
-background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+   
+    background-color: '#7776B3 ';
+
 margin: 0;
     padding: 0;
     overflow: auto;
+    transition: background-color 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 
@@ -53,10 +54,59 @@ margin: 0;
  
 }
 
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+    
+}
+
 .scroll {
     text-align: center;
     position: relative;
     z-index: 1000;
     color: #fff;
     
+}
+
+.definition-text {
+    color: #fff;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    line-height: 3rem;
+    margin-top: -70px;
+}
+
+.btn {
+    margin-top: 30px;
+    padding: 10px 30px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: transparent;
+    font-family: 'Hello Bonia Serif', sans-serif;
+     border: none;
+    cursor: pointer;
+    pointer-events: all;
+    transition: all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+}
+
+.btn:hover {
+    transform: translateY(-7px);
+}
+
+.text-container span {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.underline {
+    text-decoration: underline;
+    color: #F4CE14;
+    font-weight: bold;
+
 }

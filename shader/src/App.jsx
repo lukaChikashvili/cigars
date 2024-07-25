@@ -1,11 +1,12 @@
 import './app.css';
-import {  ScrollControls} from '@react-three/drei';
+import {  Scroll, ScrollControls} from '@react-three/drei';
 
 import { Canvas} from '@react-three/fiber';
 import Scene from './components/Scene';
 import Header from './components/Header';
 import Text from './components/Text';
 import Cloth from './components/Cloth';
+
 
 
 function App() {
@@ -16,11 +17,12 @@ function App() {
     <>
     <Canvas shadows
         camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 2, 50] }}>
-          <ScrollControls damping={0.5} pages={4}>
-       
+          <ScrollControls  damping={0.5} pages={10}>
+ 
        <Scene />
+ 
        <Cloth />
-   
+
        </ScrollControls>
 
         </Canvas>
@@ -28,7 +30,10 @@ function App() {
         <div className='container'>
      <Header />
      <Text />
+ 
         </div>
+
+            
     </>
    
   );

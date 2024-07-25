@@ -1,5 +1,5 @@
 
-import { useGLTF, useScroll, useTexture } from '@react-three/drei';
+import { Sky, Stars, useGLTF, useScroll, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import vertex from '../shaders/coffeeSmoke/vertex.glsl';
 import fragment from '../shaders/coffeeSmoke/fragment.glsl';
@@ -90,6 +90,7 @@ const Scene = () => {
          />
        </mesh>
 
+       <Stars radius={50} depth={30} count={3000} factor={4} saturation={2} fade speed={1} />
      
  </>
   )
