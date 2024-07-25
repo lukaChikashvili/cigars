@@ -6,10 +6,10 @@ import ContextProvider from './context/MeshContext.jsx';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  
 
  <ContextProvider>
     <App />
     </ContextProvider>
-  </React.StrictMode>,
+  
 )
