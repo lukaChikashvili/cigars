@@ -1,14 +1,26 @@
 import './app.css';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { OrbitControls, useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import vertex from './shaders/coffeeSmoke/vertex.glsl';
 import fragment from './shaders/coffeeSmoke/fragment.glsl';
+import { useRef } from 'react';
 
 
 function App() {
 
-
+   // Load cigar model
    const model = useGLTF('./Cigar.glb');
+
+   // Load perline texture
+   const texture = useTexture('./perlin.png');
+
+
+
+   // uniforms
+   const uniforms = useRef({
+      uPerlin: { value: texture}
+   }) 
+
   
   return (
     <>
@@ -32,11 +44,15 @@ function App() {
 
        <mesh scale={[ 1, 6, 1.5 ]} 
              rotation={[0,  Math.PI / 2, 0]}
-             position={[0.6, 1.5, 0]}> 
+             position={[0.6, 1.6, 0]}> 
         <planeGeometry args={[1, 1, 64, 64]}/>
          <shaderMaterial  
+           vertexShader={vertex}
+           fragmentShader={fragment}
            side={THREE.DoubleSide}
-           wireframe = {true}
+           wireframe = {false}
+           transparent = {true}
+           uniforms={uniforms.current}
          />
        </mesh>
     </>
