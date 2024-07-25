@@ -12,7 +12,7 @@ function App() {
   
   return (
     <>
-      
+      <OrbitControls makeDefault />
       <ambientLight intensity={0.3} />
       <directionalLight
         position={[5, 5, 5]}
@@ -23,7 +23,22 @@ function App() {
       />
       <pointLight position={[-5, 5, -5]} intensity={0.5} />
        
-       <primitive object={model.scene} scale = {30} position-x = {-3} rotation-y = {-0.5} />
+       <primitive 
+        object={model.scene}
+        scale = {40} 
+        position-y = {-1}
+        position-x = {-3} 
+         />
+
+       <mesh scale={[ 1, 6, 1.5 ]} 
+             rotation={[0,  Math.PI / 2, 0]}
+             position={[0.6, 1.5, 0]}> 
+        <planeGeometry args={[1, 1, 64, 64]}/>
+         <shaderMaterial  
+           side={THREE.DoubleSide}
+           wireframe = {true}
+         />
+       </mesh>
     </>
   );
 }
