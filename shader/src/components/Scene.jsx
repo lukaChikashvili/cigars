@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { CameraControls, OrbitControls, useGLTF, useScroll, useTexture } from '@react-three/drei';
+
+import { useGLTF, useScroll, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import vertex from '../shaders/coffeeSmoke/vertex.glsl';
 import fragment from '../shaders/coffeeSmoke/fragment.glsl';
@@ -89,6 +89,8 @@ const Scene = () => {
            uniforms={uniforms.current}
          />
        </mesh>
+
+     
  </>
   )
 }

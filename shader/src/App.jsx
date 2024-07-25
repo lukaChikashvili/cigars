@@ -8,6 +8,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import Scene from './components/Scene';
 import Header from './components/Header';
 import Text from './components/Text';
+import Cloth from './components/Cloth';
 
 
 function App() {
@@ -21,8 +22,10 @@ function App() {
           <ScrollControls damping={0.5} pages={3}>
        
        <Scene />
+       <Cloth />
    
        </ScrollControls>
+
         </Canvas>
 
         <div className='container'>
