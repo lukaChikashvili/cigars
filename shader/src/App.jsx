@@ -1,5 +1,5 @@
 import './app.css';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import vertex from './shaders/coffeeSmoke/vertex.glsl';
 import fragment from './shaders/coffeeSmoke/fragment.glsl';
@@ -8,10 +8,11 @@ import fragment from './shaders/coffeeSmoke/fragment.glsl';
 function App() {
 
 
+   const model = useGLTF('./Cigar.glb');
   
   return (
     <>
-      <OrbitControls makeDefault />
+      
       <ambientLight intensity={0.3} />
       <directionalLight
         position={[5, 5, 5]}
@@ -21,16 +22,8 @@ function App() {
         shadow-mapSize-height={1024}
       />
       <pointLight position={[-5, 5, -5]} intensity={0.5} />
-
-      <mesh rotation={[0, 0, 0]} >
-        <planeGeometry args={[2, 2, 128, 128]} />
-        <shaderMaterial
-          vertexShader={vertex}
-          fragmentShader={fragment}
-          wireframe={true}
-        
-        />
-      </mesh>
+       
+       <primitive object={model.scene} scale = {30} position-x = {-3} rotation-y = {-0.5} />
     </>
   );
 }
