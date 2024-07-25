@@ -1,10 +1,7 @@
 import './app.css';
-import { OrbitControls, ScrollControls, useGLTF, useTexture } from '@react-three/drei';
-import * as THREE from 'three';
-import vertex from './shaders/coffeeSmoke/vertex.glsl';
-import fragment from './shaders/coffeeSmoke/fragment.glsl';
-import { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import {  ScrollControls} from '@react-three/drei';
+
+import { Canvas} from '@react-three/fiber';
 import Scene from './components/Scene';
 import Header from './components/Header';
 import Text from './components/Text';
@@ -19,7 +16,7 @@ function App() {
     <>
     <Canvas shadows
         camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 2, 50] }}>
-          <ScrollControls damping={0.5} pages={3}>
+          <ScrollControls damping={0.5} pages={4}>
        
        <Scene />
        <Cloth />
