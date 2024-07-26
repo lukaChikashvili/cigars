@@ -10,15 +10,11 @@ import Modal from './components/Modal';
 import { useContext } from 'react';
 import { MeshContext } from './context/MeshContext';
 import Light from './components/Light';
+import { Route, Routes } from 'react-router-dom';
 
+export const CanvasComp = () => {
 
-
-
-
-function App() {
   const { showModal} = useContext(MeshContext);
-   
-  
   return (
     <>
    
@@ -31,13 +27,32 @@ function App() {
        <Cloth />
   
        </ScrollControls>
-       {showModal &&  <Modal />}
+      
         </Canvas>
+
+        </>
+
+  )
+}
+
+
+
+function App() {
+  const { showModal} = useContext(MeshContext);
+   
+  
+  return (
+    <>
+   <Routes>
+      <Route path='/' element = {<CanvasComp />}/>
+   </Routes>
+   
+   
 
         <div className='container' >
      <Header />
      {!showModal &&  <Text />}
-    
+     {showModal &&  <Modal />}
  
         </div>
  

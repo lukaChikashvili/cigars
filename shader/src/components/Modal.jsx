@@ -1,37 +1,48 @@
-import { useFrame, useThree } from '@react-three/fiber'
-import React, { useContext, useEffect, useState } from 'react'
-import { MeshContext } from '../context/MeshContext';
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom'
+import SplitType from 'split-type'
+import gsap from 'gsap'
 
 const Modal = () => {
-  // take viewport size
-  const { size } = useThree();
-  const { setShowModal} = useContext(MeshContext);
+  const linksRef = useRef([])
 
-  const [dimension, setDimension] = useState({
-     width: size.width,
-     height: size.height
-  });
+  const handleMouseEnter = (event) => {
+    const linkElement = event.target
+    const typeSplit = new SplitType(linkElement, {
+      types: 'chars',
+      tagName: 'span'
+    })
 
-  useEffect(() => {
-    setDimension({
-      width: size.width,
-      height: size.height
-    });
+    gsap.fromTo(
+      linkElement.querySelectorAll('.char'),
+      { y: '80%', opacity: 0 },
+      { y: '0%', opacity: 1, duration: 0.85, ease: 'power1.out', stagger: 0.09 }
+    )
+  }
 
-   
-  }, [size]);
+  const handleMouseLeave = (event) => {
+    const linkElement = event.target
 
-
+    linkElement.innerHTML = linkElement.textContent
+  }
 
   return (
-  <>
-   <mesh position={[0, 0, 0]} >
-        <planeGeometry args={[dimension.width, dimension.height]} />
-        <meshStandardMaterial color="#fff" opacity={0.9} transparent />
-      </mesh>
-
-  
-  </>
+    <div className='modal'>
+      <div className='links'>
+        {["/definition", "/history", "/our-brand", "/fghfhg", "/gallery"].map((path, index) => (
+          <Link
+            key={path}
+            className="modal-link"
+            to={path}
+            ref={el => linksRef.current[index] = el}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {path.replace('/', '').replace('-', ' ')}
+          </Link>
+        ))}
+      </div>
+    </div>
   )
 }
 
