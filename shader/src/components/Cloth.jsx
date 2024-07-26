@@ -9,7 +9,7 @@ import gsap from 'gsap';
 
 const mapToRange = (value, minRange, maxRange) => minRange + (maxRange - minRange) * value;
 
-const colors = ['#17153B', '#028391', '#D2649A', '#AF47D2', '#301E67'];
+const colors = ['#17153B', '#028391', '#FF204E', '#D2649A', '#AF47D2', '#301E67', ];
 
 const Cloth = () => {
   const clothTexture = useTexture('./cloth.avif');

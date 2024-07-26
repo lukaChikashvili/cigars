@@ -10,12 +10,13 @@ const ContextProvider = ({ children }) => {
    const [manu, setManu] = useState(false);
    const [contact, setContact] = useState(false);
    const [Gallery, setGallery] = useState(false);
+   const [showModal, setShowModal] = useState(false);
 
    
 
     return (
         <MeshContext.Provider value = {{showText, setShowText, showHistory, setShowHistory, manu, setManu
-        , contact, setContact, Gallery, setGallery}}>
+        , contact, setContact, Gallery, setGallery, showModal, setShowModal}}>
             {children}
         </MeshContext.Provider>
     )

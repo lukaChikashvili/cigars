@@ -1,17 +1,22 @@
 import './app.css';
-import {  Scroll, ScrollControls} from '@react-three/drei';
+import {   ScrollControls} from '@react-three/drei';
 
 import { Canvas} from '@react-three/fiber';
 import Scene from './components/Scene';
 import Header from './components/Header';
 import Text from './components/Text';
 import Cloth from './components/Cloth';
-import SmoothScroll from './components/SmoothScroll';
+import Modal from './components/Modal';
+import { useContext } from 'react';
+import { MeshContext } from './context/MeshContext';
+import Light from './components/Light';
+
+
 
 
 
 function App() {
-
+  const { showModal} = useContext(MeshContext);
    
   
   return (
@@ -19,20 +24,20 @@ function App() {
    
     <Canvas shadows
         camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 2, 50] }}>
+          <Light />
           <ScrollControls  damping={0.5} pages={10}>
-
-
-
-       <Scene />
+        
+       {showModal ? '' : <Scene /> }
        <Cloth />
-
+  
        </ScrollControls>
-
+       {showModal &&  <Modal />}
         </Canvas>
 
-        <div className='container'>
+        <div className='container' >
      <Header />
-     <Text />
+     {!showModal &&  <Text />}
+    
  
         </div>
  
