@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 
 const Text = () => {
-  const { showText, showHistory, manu } = useContext(MeshContext);
+  const { showText, showHistory, manu, contact } = useContext(MeshContext);
   const textRef = useRef();
   const definitionRef = useRef();
   const btnRef = useRef();
@@ -30,7 +30,7 @@ const Text = () => {
 
   return (
     <div className='text-container'>
-      <span>{showText ? '1 - 5' : manu ? '3 - 5' : showHistory ? '2 - 5' : ''}</span>
+      <span>{showText ? '1 - 5' : manu ? '3 - 5' : showHistory ? '2 - 5' : contact ? '4 - 5' : ''}</span>
       <motion.h1
         ref={textRef}
         initial={{ opacity: 0 }}
@@ -38,7 +38,7 @@ const Text = () => {
         transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5}}
         className='text'
       >
-        {showHistory ? 'History' : showText ? 'Definition' : manu ? 'Our brand' : 'The Timeless Journey of Cigars'}
+        {showHistory ? 'History' : showText ? 'Definition' : manu ? 'Our brand' : contact ? 'Contact Us' :  'The Timeless Journey of Cigars'}
       </motion.h1>
       <p className='scroll'>{!showText && !showHistory && !manu && 'Scroll to discover'}</p>
       {showText && (

@@ -9,11 +9,11 @@ import gsap from 'gsap';
 
 const mapToRange = (value, minRange, maxRange) => minRange + (maxRange - minRange) * value;
 
-const colors = ['#7AA2E3', '#028391', '#D2649A'];
+const colors = ['#7AA2E3', '#028391', '#D2649A', '#AF47D2'];
 
 const Cloth = () => {
   const clothTexture = useTexture('./cloth.avif');
-  const { setShowHistory, setShowText, setManu } = useContext(MeshContext);
+  const { setShowHistory, setShowText, setManu, setContact } = useContext(MeshContext);
 
   const uniforms = useRef({
     uTime: { value: 0 },
@@ -39,10 +39,10 @@ const Cloth = () => {
     uniforms.current.uTime.value += 0.004;
 
     let scrollOffset = scroll.offset;
-    let mappedScrollOffset = mapToRange(scrollOffset, 0, 5);
+    let mappedScrollOffset = mapToRange(scrollOffset, 0, 6);
 
     const colorIndex = Math.floor(mappedScrollOffset % colors.length);
-    gsap.to(document.body, { backgroundColor: colors[colorIndex], duration: 1 });
+    gsap.to(document.body, { backgroundColor: colors[colorIndex], duration: 0.5 });
 
     clothRef.current.position.z = -4 + scrollOffset * 5;
     clothRef.current.rotation.z = scrollOffset * 3.0;
@@ -52,19 +52,31 @@ const Cloth = () => {
     
 
     if (mappedScrollOffset >= 0.5 && mappedScrollOffset < 2.0) {
+      console.log("definition")
       setShowText(true);
       setShowHistory(false);
       setManu(false);
+      setContact(false);
     } else if (mappedScrollOffset >= 2.0 && mappedScrollOffset < 3.5) {
-      
+      console.log('history');
       setShowText(false);
       setShowHistory(true);
       setManu(false);
+       setContact(false);
     } else if (mappedScrollOffset >= 3.5 && mappedScrollOffset < 5.0) {
+      console.log('our brand');
       setShowText(false);
       setShowHistory(false);
       setManu(true);
-    } else {
+      setContact(false);
+    } else if (mappedScrollOffset >= 5.0 && mappedScrollOffset < 6.0) {
+      console.log('contact us');
+      setContact(true);
+      setShowText(false);
+      setShowHistory(false);
+      setManu(false);
+    }else if(mappedScrollOffset < 6.0) {
+      setContact(false);
       setShowText(false);
       setShowHistory(false);
       setManu(false);
