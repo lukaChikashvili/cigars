@@ -9,11 +9,11 @@ import gsap from 'gsap';
 
 const mapToRange = (value, minRange, maxRange) => minRange + (maxRange - minRange) * value;
 
-const colors = ['#7AA2E3', '#028391', '#D2649A', '#AF47D2'];
+const colors = ['#17153B', '#028391', '#D2649A', '#AF47D2', '#301E67'];
 
 const Cloth = () => {
   const clothTexture = useTexture('./cloth.avif');
-  const { setShowHistory, setShowText, setManu, setContact } = useContext(MeshContext);
+  const { setShowHistory, setShowText, setManu, setContact, setGallery } = useContext(MeshContext);
 
   const uniforms = useRef({
     uTime: { value: 0 },
@@ -39,9 +39,9 @@ const Cloth = () => {
     uniforms.current.uTime.value += 0.004;
 
     let scrollOffset = scroll.offset;
-    let mappedScrollOffset = mapToRange(scrollOffset, 0, 6);
+    let mappedScrollOffset = mapToRange(scrollOffset, 0, 10);
 
-    const colorIndex = Math.floor(mappedScrollOffset % colors.length);
+    const colorIndex = Math.min(Math.floor(mappedScrollOffset), colors.length - 1);
     gsap.to(document.body, { backgroundColor: colors[colorIndex], duration: 0.5 });
 
     clothRef.current.position.z = -4 + scrollOffset * 5;
@@ -57,29 +57,37 @@ const Cloth = () => {
       setShowHistory(false);
       setManu(false);
       setContact(false);
-    } else if (mappedScrollOffset >= 2.0 && mappedScrollOffset < 3.5) {
+    } else if (mappedScrollOffset >= 2.0 && mappedScrollOffset < 4.5) {
       console.log('history');
       setShowText(false);
       setShowHistory(true);
       setManu(false);
        setContact(false);
-    } else if (mappedScrollOffset >= 3.5 && mappedScrollOffset < 5.0) {
+    } else if (mappedScrollOffset >= 4.5 && mappedScrollOffset < 6.5) {
       console.log('our brand');
       setShowText(false);
       setShowHistory(false);
       setManu(true);
       setContact(false);
-    } else if (mappedScrollOffset >= 5.0 && mappedScrollOffset < 6.0) {
+    } else if (mappedScrollOffset >= 6.5 && mappedScrollOffset < 8.0) {
       console.log('contact us');
       setContact(true);
       setShowText(false);
       setShowHistory(false);
       setManu(false);
-    }else if(mappedScrollOffset < 6.0) {
+    }else if (mappedScrollOffset >= 8.0 && mappedScrollOffset < 10.0) {
+      console.log('Gallery');
+      setGallery(true);
       setContact(false);
       setShowText(false);
       setShowHistory(false);
       setManu(false);
+    }else if(mappedScrollOffset < 8.0) {
+      setContact(false);
+      setShowText(false);
+      setShowHistory(false);
+      setManu(false);
+      setGallery(false);
     }
 
 
