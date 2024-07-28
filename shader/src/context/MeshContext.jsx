@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 
 
 export const MeshContext = createContext();
@@ -12,11 +12,11 @@ const ContextProvider = ({ children }) => {
    const [Gallery, setGallery] = useState(false);
    const [showModal, setShowModal] = useState(false);
 
-   
-
+   const clothRef = useRef();
+const [showModalText, setShowModalText] = useState(true);
     return (
         <MeshContext.Provider value = {{showText, setShowText, showHistory, setShowHistory, manu, setManu
-        , contact, setContact, Gallery, setGallery, showModal, setShowModal}}>
+        , contact, setContact, Gallery, setGallery, showModal, setShowModal, clothRef, showModalText, setShowModalText }}>
             {children}
         </MeshContext.Provider>
     )

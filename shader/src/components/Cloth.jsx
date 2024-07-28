@@ -13,7 +13,8 @@ const colors = ['#17153B', '#028391', '#FF204E', '#D2649A', '#AF47D2', '#301E67'
 
 const Cloth = () => {
   const clothTexture = useTexture('./cloth.avif');
-  const { setShowHistory, setShowText, setManu, setContact, setGallery } = useContext(MeshContext);
+  const { setShowHistory, setShowText, setManu, setContact, setGallery, clothRef ,
+           changeColor} = useContext(MeshContext);
 
   const uniforms = useRef({
     uTime: { value: 0 },
@@ -23,7 +24,7 @@ const Cloth = () => {
     uColor: { value: new THREE.Color('#fff') },
   });
 
-  const clothRef = useRef();
+ 
   const scroll = useScroll();
 
 
@@ -90,6 +91,7 @@ const Cloth = () => {
       setGallery(false);
     }
 
+  
 
   });
 

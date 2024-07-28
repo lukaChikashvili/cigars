@@ -7,10 +7,11 @@ import Header from './components/Header';
 import Text from './components/Text';
 import Cloth from './components/Cloth';
 import Modal from './components/Modal';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { MeshContext } from './context/MeshContext';
 import Light from './components/Light';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Definition from './components/Definition';
 
 export const CanvasComp = () => {
 
@@ -21,7 +22,7 @@ export const CanvasComp = () => {
     <Canvas shadows
         camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 2, 50] }}>
           <Light />
-          <ScrollControls  damping={0.5} pages={10}>
+          <ScrollControls  damping={0.5} pages={15}>
         
        {showModal ? '' : <Scene /> }
        <Cloth />
@@ -38,20 +39,31 @@ export const CanvasComp = () => {
 
 
 function App() {
-  const { showModal} = useContext(MeshContext);
+  const { showModal, showModalText, setShowModalText} = useContext(MeshContext);
    
+  const location =  useLocation();
+
+  useEffect(() => {
+    if(location.pathname === '/') {
+      setShowModalText(true);
+    }else {
+      setShowModalText(false)
+    }
+  
+  }, [location.pathname, showModalText ])
   
   return (
     <>
    <Routes>
       <Route path='/' element = {<CanvasComp />}/>
+      <Route path='/definition' element = {<Definition />}/>
    </Routes>
    
    
 
         <div className='container' >
      <Header />
-     {!showModal &&  <Text />}
+     {showModalText &&  <Text />}
      {showModal &&  <Modal />}
  
         </div>
