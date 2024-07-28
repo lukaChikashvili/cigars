@@ -3,12 +3,15 @@ import { MeshContext } from '../context/MeshContext';
 import { MoveRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
+import { useNavigate } from 'react-router-dom';
 
 const Text = () => {
   const { showText, showHistory, manu, contact, Gallery } = useContext(MeshContext);
   const textRef = useRef();
   const definitionRef = useRef();
   const btnRef = useRef();
+
+  let navigate = useNavigate();
 
   const definition = `
     A <span class='underline'>cigar</span> is a tobacco product made to be smoked. Cigars are produced in a variety of shapes and sizes.
@@ -45,8 +48,8 @@ const Text = () => {
               Gallery ? 'Gallery' :
                'The Timeless Journey of Cigars'}
       </motion.h1>
-      <p className='scroll'>{!showText && !showHistory && !manu && 'Scroll to discover'}</p>
-      {showText && (
+      <p className='scroll'>{!showText && !showHistory && !manu && !contact && !Gallery && 'Scroll to discover'}</p>
+      {showText ? (
         <>
           <motion.h2
             ref={definitionRef}
@@ -62,11 +65,48 @@ const Text = () => {
             animate={{ opacity: 1 }}
             transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5 }}
             className='btn'
+            onClick={() => navigate('/definition')}
           >
             MORE ABOUT <MoveRight />
           </motion.button>
         </>
-      )}
+      ) : showHistory ?  <motion.button
+      ref={btnRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5 }}
+      className='btn'
+      onClick={() => navigate('/history')}
+    >
+      Explore history of cigars <MoveRight />
+    </motion.button> : manu ?  <motion.button
+      ref={btnRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5 }}
+      className='btn'
+      onClick={() => navigate('/our-brand')}
+    >
+      Buy our product<MoveRight />
+    </motion.button> : contact ? <motion.button
+      ref={btnRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5 }}
+      className='btn'
+      onClick={() => navigate('/contact')}
+    >
+      Connect with us<MoveRight />
+    </motion.button> : Gallery ? <motion.button
+      ref={btnRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20, duration: 0.5 }}
+      className='btn'
+      onClick={() => navigate('/gallery')}
+    >
+      Discover photos<MoveRight />
+    </motion.button> : ""}
     </div>
   );
 };

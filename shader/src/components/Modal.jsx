@@ -39,7 +39,7 @@ const hideText = () => {
   return (
     <div className='modal'>
       <div className='links'>
-        {["/definition", "/history", "/our-brand", "/fghfhg", "/gallery"].map((path, index) => (
+        {["/definition", "/history", "/our-brand", "/contact", "/gallery"].map((path, index) => (
           <Link
             key={path}
             className="modal-link"

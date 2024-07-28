@@ -39,15 +39,19 @@ export const CanvasComp = () => {
 
 
 function App() {
-  const { showModal, showModalText, setShowModalText} = useContext(MeshContext);
+  const { showModal, setShowModal,  showModalText, setShowModalText} = useContext(MeshContext);
    
   const location =  useLocation();
 
   useEffect(() => {
     if(location.pathname === '/') {
       setShowModalText(true);
+       if(showModal)  {
+        setShowModalText(false);
+       }
     }else {
-      setShowModalText(false)
+      setShowModalText(false);
+      setShowModal(false);
     }
   
   }, [location.pathname, showModalText ])

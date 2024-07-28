@@ -205,3 +205,34 @@ margin: 0;
  
 }
 
+.title {
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.definition {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+ 
+}
+
+.definition h1 {
+
+    color:#F4CE14;
+    text-shadow: -2px 2px  #191919;
+    font-size: 3rem;
+}
+
+.text-cont {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.text-cont p {
+    font-size: 20px;
+    line-height: 2rem;
+}
