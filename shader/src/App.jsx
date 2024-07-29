@@ -12,6 +12,7 @@ import { MeshContext } from './context/MeshContext';
 import Light from './components/Light';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Definition from './components/Definition';
+import History from './components/History';
 
 export const CanvasComp = () => {
 
@@ -61,6 +62,7 @@ function App() {
    <Routes>
       <Route path='/' element = {<CanvasComp />}/>
       <Route path='/definition' element = {<Definition />}/>
+      <Route path='/history' element = {<History />}/>
    </Routes>
    
    

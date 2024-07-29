@@ -12,11 +12,14 @@ const ContextProvider = ({ children }) => {
    const [Gallery, setGallery] = useState(false);
    const [showModal, setShowModal] = useState(false);
 
+   const [changeIcon, setChangeIcon] = useState(false);
+
    const clothRef = useRef();
 const [showModalText, setShowModalText] = useState(true);
     return (
         <MeshContext.Provider value = {{showText, setShowText, showHistory, setShowHistory, manu, setManu
-        , contact, setContact, Gallery, setGallery, showModal, setShowModal, clothRef, showModalText, setShowModalText }}>
+        , contact, setContact, Gallery, setGallery, showModal, setShowModal, clothRef, showModalText, setShowModalText,
+        changeIcon, setChangeIcon }}>
             {children}
         </MeshContext.Provider>
     )
