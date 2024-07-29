@@ -47,6 +47,8 @@ function App() {
   useEffect(() => {
     if(location.pathname === '/') {
       setShowModalText(true);
+     
+
        if(showModal)  {
         setShowModalText(false);
        }
